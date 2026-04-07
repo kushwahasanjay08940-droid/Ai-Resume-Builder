@@ -1,11 +1,11 @@
 import { Plus, Sparkles, X } from "lucide-react";
 import { useState } from "react";
 
-const SkillsForm = ({ data, onChange }) => {
+const SkillsForm = ({ data, onChange }) => {  // onChange use to send data to parent
   const [newSkill, setNewSkill] = useState("");
 
   const addSkill = () => {
-    if (newSkill.trim() && !data.includes(newSkill.trim())) {
+    if (newSkill.trim() && !data.includes(newSkill.trim())) { //trim se " z  " extra space remove "z"
       onChange([...data, newSkill.trim()]);
       setNewSkill("");
     }

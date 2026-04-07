@@ -1,57 +1,202 @@
-# AI Resume Builder
+# 🤖 AI Resume Builder (MERN Stack)
 
-**AI-powered resume builder built with React, Vite & Express**  
-Create, customise and download professional-looking CVs in just a few minutes.
+**AI-powered Resume Builder built with MERN Stack (MongoDB, Express, React, Node.js)**
+Create, customize, and download professional resumes in minutes with AI assistance.
 
-## 🚀 Live Demo  
-[Visit the app](https://ai-resume-builder-iota-one.vercel.app)
+---
 
-## 🧰 Tech Stack  
-- **Frontend:** React, Vite, TailwindCSS  
-- **Backend:** Node.js, Express  
-- **Deployment:** Vercel  
-- **Features:**  
-  - Rich form for personal info, experience, projects, education  
-  - Multiple templates for different styles  
-  - Export to PDF/download support
-  - Live link of resume
-  - Fully responsive and free to use  
+## 🚀 Live Demo
+
+👉 *Add your deployed link here*
+
+---
+
+## 🧰 Tech Stack
+
+### Frontend
+
+* React (Vite)
+* Tailwind CSS
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* MongoDB
+
+### Deployment
+
+* Vercel (Frontend)
+* Render / Railway / VPS (Backend)
+
+---
+
+## ✨ Features
+
+* 🧠 AI-powered resume content generation
+* 📝 Rich form for:
+
+  * Personal Information
+  * Work Experience
+  * Projects
+  * Education
+* 🎨 Multiple resume templates
+* 📄 Export resume as PDF
+* 🔗 Shareable live resume link
+* 📱 Fully responsive design
+* 🔐 Authentication using JWT
+* ☁️ Image upload support (ImageKit / Cloud storage)
+* ⚡ Fast and smooth UI with React + Vite
+
+---
+
+## 📂 Project Structure
+
+```
+Resume-Builder/
+│
+├── client/        # React Frontend
+│   ├── src/
+│   └── ...
+│
+├── server/        # Express Backend
+│   ├── controllers/
+│   ├── routes/
+│   ├── models/
+│   └── ...
+│
+└── README.md
+```
+
+---
 
 ## 🧩 Setup & Installation
 
-### 1. Clone the repo  
+### 1️⃣ Clone the Repository
+
 ```bash
+git clone https://github.com/your-username/resume-builder.git
 cd Resume-Builder
 ```
-### 2. Install dependencies
+
+---
+
+### 2️⃣ Install Dependencies
+
 ```bash
-# in root folder if monorepo or split accordingly
-cd client && npm install
-cd ../server && npm install
+# Install frontend dependencies
+cd client
+npm install
+
+# Install backend dependencies
+cd ../server
+npm install
 ```
-### 3. Environment variables
-Create a .env file in the server folder:
-```bash
+
+---
+
+### 3️⃣ Environment Variables
+
+#### 📌 Server (`/server/.env`)
+
+```env
 PORT=3000
-MONGODB_URI=<your mongo uri>
-JWT_SECRET=<your jwt secret>
-IMAGEKIT_PRIVATE_KEY=<your imagekit key>
-OPENAI_API_KEY=<open api key>
-OPENROUTER_API_KEY=<openai base url>
-OPENAI_MODEL="gemini-2.5-flash"
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+
+# Image Upload
+IMAGEKIT_PRIVATE_KEY=your_imagekit_key
+
+# AI APIs
+OPENAI_API_KEY=your_openai_key
+OPENROUTER_API_KEY=your_openrouter_key
+OPENAI_MODEL=gemini-2.5-flash
 ```
-Create a .env file in the client folder:
-```bash
+
+#### 📌 Client (`/client/.env`)
+
+```env
 VITE_BASE_URL=http://localhost:3000
 ```
-### 4. Run locally
-```bash
-# Client
-cd client
-npm run dev
 
-# Server
-cd ../server
+---
+
+### 4️⃣ Run Locally
+
+#### ▶️ Start Backend
+
+```bash
+cd server
 npm run server
 ```
 
+#### ▶️ Start Frontend
+
+```bash
+cd client
+npm run dev
+```
+
+---
+
+## 🔐 API Features
+
+* User Authentication (Login / Signup)
+* Resume CRUD operations
+* AI content generation endpoint
+* Image upload handling
+* Secure routes with JWT
+
+---
+
+## 📸 Screenshots
+
+👉 *Add screenshots here (UI, templates, dashboard)*
+
+---
+
+## 🌍 Deployment
+
+### Frontend
+
+* Deploy on **Vercel**
+
+### Backend
+
+
+Make sure to update:
+
+```env
+VITE_BASE_URL=https://your-backend-url.com
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**
+
+---
+
+## 👨‍💻 Author
+
+**Sanjay Kushwaha**
+
+https://www.linkedin.com/in/sanjay-kushwaha-9012713a8?
+
+
+⭐ If you like this project, don't forget to **star the repo!**

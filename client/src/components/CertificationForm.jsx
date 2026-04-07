@@ -19,7 +19,7 @@ const CertificationForm = ({ data, onChange }) => {
 
   const updateCertification = (index, field, value) => {
     const updated = [...data];
-    updated[index] = { ...updated[index], [field]: value };
+    updated[index] = { ...updated[index], [field]: value };  //key , field value update
     onChange(updated);
   };
 

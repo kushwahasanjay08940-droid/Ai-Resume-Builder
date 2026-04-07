@@ -59,7 +59,7 @@ const ProfessionalSummaryForm = ({ data, onChange, setResumeDate }) => {
           value={data || ""}
           onChange={(e) => onChange(e.target.value)}
           rows={7}
-          className="w-full p-3 px-4 mt-2 border text-sm border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
+          className="w-full p-3 px-4 mt-2 border text-sm text-stone-500 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
           placeholder="Write a compelling professional summary that highlights your key strengths and career objectives..."
         />
         <p className="text-xs text-gray-500 max-w-4/5 mx-auto text-center">

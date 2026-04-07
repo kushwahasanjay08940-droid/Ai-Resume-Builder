@@ -40,7 +40,10 @@ export const deleteResume = async (req, res) => {
 export const getResumeById = async (req, res) => {
   try {
     const userId = req.userId;
-    const { resumeId } = req.params;
+                                            // Frontend token bhejta hai
+                                            // Backend verify karta hai
+                                            // Token se userId nikalta hai
+    const { resumeId } = req.params;  //Ye URL se aata hai
 
     const resume = await Resume.findOne({ userId, _id: resumeId });
 
@@ -64,7 +67,7 @@ export const getPublicResumeById = async (req, res) => {
   try {
     const { resumeId } = req.params;
 
-    const resume = await Resume.findOne({ public: true, _id: resumeId });
+    const resume = await Resume.findOne({ public: true, _id: resumeId });  //Sirf public resumes hi milenge
 
     if (!resume) {
       return res.status(404).json({ message: "Resume not found" });
@@ -78,24 +81,29 @@ export const getPublicResumeById = async (req, res) => {
 
 // controller for updating a resume
 // PUT: /api/resumes/update
-export const updateResume = async (req, res) => {
+
+
+export const updateResume = async (req, res) => { 
   try {
     const userId = req.userId;
-    const { resumeId, resumeData, removeBackground } = req.body;
+    const { resumeId, resumeData, removeBackground } = req.body;  //headers
+// small (userId, email)
     const image = req.file;
 
     let resumeDataCopy;
 
+    // two from s me data ata hia string form me ya object form me
+
     if (typeof resumeData === "string") {
-      resumeDataCopy = await JSON.parse(resumeData);
+      resumeDataCopy = await JSON.parse(resumeData);   // JSON.parse() se object banaya
     } else {
-      resumeDataCopy = structuredClone(resumeData);
+      resumeDataCopy = structuredClone(resumeData);   //direct clone kiya (safe copy banane ke liye)
     }
 
     if (image) {
-      const imageBufferData = fs.createReadStream(image.path);
+      const imageBufferData = fs.createReadStream(image.path); //File read karna
 
-      const response = await imageKit.files.upload({
+      const response = await imageKit.files.upload({   //ImageKit pe file upload karna
         file: imageBufferData,
         fileName: "resume.png",
         folder: "user-resumes",
@@ -105,13 +113,13 @@ export const updateResume = async (req, res) => {
             (removeBackground ? ",e-bgremove" : ""),
         },
       });
-      resumeDataCopy.personal_info.image = response.url;
+      resumeDataCopy.personal_info.image = response.url;  //Uploaded image ka URL resume data me daal diya
     }
 
     const resume = await Resume.findOneAndUpdate(
       { userId, _id: resumeId },
       resumeDataCopy,
-      { new: true }
+      { new: true }   //updated data return karega
     );
 
     return res.status(200).json({ message: "Saved successfully", resume });
@@ -119,3 +127,5 @@ export const updateResume = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+

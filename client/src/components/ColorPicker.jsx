@@ -57,3 +57,9 @@ const ColorPicker = ({ selectedColor, onChange }) => {
 };
 
 export default ColorPicker;
+
+
+// Stage	Type
+// Select karte time	File Object
+// Preview ke time	Blob URL
+// Save hone ke baad	String URL

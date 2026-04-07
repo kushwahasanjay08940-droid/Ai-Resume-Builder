@@ -8,24 +8,32 @@ const Testimonials = () => {
         "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
       name: "Briar Martin",
       handle: "@neilstellar",
+      feedback:
+        "Got my first internship interview after using this resume builder. The templates are clean and ATS-friendly.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
       name: "Avery Johnson",
       handle: "@averywrites",
+      feedback:
+        "I was struggling to format my resume, but this tool made it super easy and professional in minutes.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60",
       name: "Jordan Lee",
       handle: "@jordantalks",
+      feedback:
+        "The resume templates helped me stand out during job applications. I finally started getting callbacks.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
       name: "Avery Johnson",
       handle: "@averywrites",
+      feedback:
+        "Simple UI and powerful output. I created multiple resumes for different job roles effortlessly.",
     },
   ];
 
@@ -57,11 +65,13 @@ const Testimonials = () => {
           <span className="text-xs text-slate-500">{card.handle}</span>
         </div>
       </div>
+
       <p className="text-sm py-4 text-gray-800">
-        Radiant made undercutting all of our competitors an absolute breeze.
+        {card.feedback}
       </p>
     </div>
   );
+
   return (
     <>
       <style>
@@ -80,11 +90,12 @@ const Testimonials = () => {
           }
         `}
       </style>
+
       <div
         id="testimonials"
         className="flex flex-col items-center my-10 scroll-mt-12"
       >
-        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
+        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-md px-6 py-1.5">
           <BookUserIcon className="size-4.5 stroke-gray-600" />
           <span>Testimonials</span>
         </div>
@@ -94,23 +105,28 @@ const Testimonials = () => {
           description="Hear what our users say about us. We're always looking for ways to improve. If you have a positive experience with us, leave a review."
         />
       </div>
+
       <div className="marquee-row w-full mx-auto max-w-5xl overflow-hidden relative">
         <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-linear-to-r from-white to-transparent"></div>
+
         <div className="marquee-inner flex transform-gpu min-w-[200%] pt-10 pb-5">
           {[...cardsData, ...cardsData].map((card, index) => (
             <CreateCard key={index} card={card} />
           ))}
         </div>
+
         <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-linear-to-l from-white to-transparent"></div>
       </div>
 
       <div className="marquee-row w-full mx-auto max-w-5xl overflow-hidden relative">
         <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-linear-to-r from-white to-transparent"></div>
+
         <div className="marquee-inner marquee-reverse flex transform-gpu min-w-[200%] pt-10 pb-5">
           {[...cardsData, ...cardsData].map((card, index) => (
             <CreateCard key={index} card={card} />
           ))}
         </div>
+
         <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-linear-to-l from-white to-transparent"></div>
       </div>
     </>

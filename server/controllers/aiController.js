@@ -66,23 +66,31 @@ export const enhanceJobDescription = async (req, res) => {
 };
 
 // POST: /api/ai/upload-resume
+
+
+
+
 export const uploadResume = async (req, res) => {
   try {
     const { resumeText, title } = req.body;
     const userId = req.userId;
 
+    // console.log("Received resume text:", resumeText);
+
     if (!resumeText) {
-      return res.status(400).json({ message: "Missing required fields" });
+      return res.status(400).json({ message: "Resume text is required" });
     }
 
     const systemPrompt =
-      "You are an expert AI agent that extracts structured data from resumes.";
+      "You are an expert AI agent to extract structured data from resumes. Always return valid JSON only.";
 
-    const userPrompt = `Extract structured JSON data from this resume:
+    const userPrompt = `
+Extract structured data from this resume:
 
 ${resumeText}
 
-Return ONLY valid JSON in this format:
+Return ONLY valid JSON (no text before/after) in this format:
+
 {
   "professional_summary": "",
   "skills": [],
@@ -129,20 +137,21 @@ Return ONLY valid JSON in this format:
     const response = await ai.chat.completions.create({
       model: process.env.OPENAI_MODEL,
       messages: [
-        {
-          role: "system",
-          content: systemPrompt,
-        },
-        {
-          role: "user",
-          content: userPrompt,
-        },
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
       ],
       response_format: { type: "json_object" },
     });
 
     const extractedData = response.choices[0].message.content;
-    const parsedData = JSON.parse(extractedData);
+
+    let parsedData;
+    try {
+      parsedData = JSON.parse(extractedData);
+    } catch (err) {
+      console.error("❌ Invalid JSON from AI:", extractedData);
+      return res.status(500).json({ message: "AI returned invalid JSON" });
+    }
 
     const newResume = await Resume.create({
       userId,
@@ -151,7 +160,12 @@ Return ONLY valid JSON in this format:
     });
 
     return res.status(200).json({ resumeId: newResume._id });
+
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    console.error("❌ Server Error:", error);
+    return res.status(500).json({ message: error.message });
   }
 };
+
+
+

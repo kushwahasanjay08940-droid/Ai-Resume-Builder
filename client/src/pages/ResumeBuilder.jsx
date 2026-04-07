@@ -30,9 +30,16 @@ import api from "../configs/api";
 import toast from "react-hot-toast";
 import CertificationForm from "../components/CertificationForm";
 
+
+// useSelector
+
+// authentication
+// permissions
+// API access
+
 const ResumeBuilder = () => {
-  const { resumeId } = useParams();
-  const { token } = useSelector((state) => state.auth);
+  const { resumeId } = useParams(); //req.body => frontend , req.params => URL [ dynamic value ] se aata hai , req.query => URL ke baad ? ke baad aata hai
+  const { token } = useSelector((state) => state.auth);   //  Redux store se token le rahe ho.
 
   const [resumeData, setResumeData] = useState({
     _id: "",
@@ -47,6 +54,7 @@ const ResumeBuilder = () => {
     accent_color: "#3b82f6",
     public: false,
   });
+  
   const [activeSectionIndex, setactiveSectionIndex] = useState(0);
   const [removeBackground, setRemoveBackground] = useState(false);
 
@@ -80,10 +88,10 @@ const ResumeBuilder = () => {
   const changeResumeVisibility = async () => {
     try {
       const formData = new FormData();
-      formData.append("resumeId", resumeId);
+      formData.append("resumeId", resumeId);  //FormData ek special object hota hai jo:
       formData.append(
         "resumeData",
-        JSON.stringify({ public: !resumeData.public })
+        JSON.stringify({ public: !resumeData.public })//!resumeData.public → uska ulta  , string me convert
       );
 
       const { data } = await api.put("/api/resumes/update", formData, {
@@ -99,10 +107,10 @@ const ResumeBuilder = () => {
   };
 
   const handleShare = () => {
-    const frontendUrl = window.location.href.split("/app/")[0];
+    const frontendUrl = window.location.href.split("/app/")[0]; // appse split  kar deye app ko bhi 
     const resumeUrl = frontendUrl + "/view/" + resumeId;
-
-    if (navigator.share) {
+ 
+    if (navigator.share) {  //Web Share API
       navigator.share({ url: resumeUrl, text: "My Resume" });
     } else {
       alert("Share not supported on this borwser.");
@@ -117,15 +125,16 @@ const ResumeBuilder = () => {
     try {
       let updatedResumeData = structuredClone(resumeData);
 
-      if (typeof resumeData.personal_info.image === "object") {
+      if (typeof resumeData.personal_info.image === "object") {  //image ek file object hai ya string URL
+Example:
         delete updatedResumeData.personal_info.image;
       }
 
-      const formData = new FormData();
+      const formData = new FormData();  //Image file ko JSON me bhejna possible nahi hota
       formData.append("resumeId", resumeId);
       formData.append("resumeData", JSON.stringify(updatedResumeData));
 
-      removeBackground && formData.append("removeBackground", "yes");
+      removeBackground && formData.append("removeBackground", "yes"); //Agar user ne option ON kiya:
       typeof resumeData.personal_info.image === "object" &&
         formData.append("image", resumeData.personal_info.image);
 
@@ -198,7 +207,7 @@ const ResumeBuilder = () => {
                       onClick={() =>
                         setactiveSectionIndex((prevIndex) =>
                           Math.max(prevIndex - 1, 0)
-                        )
+                        )           
                       }
                       className="flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all"
                       disabled={activeSectionIndex === 0}

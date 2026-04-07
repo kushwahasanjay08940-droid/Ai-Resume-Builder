@@ -1,40 +1,57 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useLenis } from "lenis/react";
+
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
 
-  const logos = [
-    "https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg",
-    "https://saasly.prebuiltui.com/assets/companies-logo/framer.svg",
-    "https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg",
-    "https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg",
-    "https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg",
-  ];
+  const lenis = useLenis();
+
+const handleScroll = (e, id) => {
+  e.preventDefault();
+
+  const el = document.getElementById(id);
+
+  if (el && lenis) {
+    lenis.scrollTo(el, {
+      duration: 1,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    });
+  }
+};
+
+const logos = [
+  "https://cdn.simpleicons.org/instagram",
+  "https://cdn.simpleicons.org/framer",
+  "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+  "https://cdn.simpleicons.org/huawei",
+  "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/walmart.svg",
+];
 
   return (
     <>
       <div className="min-h-screen pb-20">
         {/* Navbar */}
         <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-          <a href="https://prebuiltui.com">
+          < Link to="/">
             <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
             <a href="#" className="hover:text-green-600 transition">
               Home
             </a>
-            <a href="#features" className="hover:text-green-600 transition">
+            <a href="#features" className="hover:text-green-600 transition"   onClick={(e) => handleScroll(e, "features")}>
               Features
             </a>
-            <a href="#testimonials" className="hover:text-green-600 transition">
+            <a href="#testimonials" className="hover:text-green-600 transition" onClick={(e) => handleScroll(e, "testimonials")}>
               Testimonials
             </a>
-            <a href="#cta" className="hover:text-green-600 transition">
+            <a href="#cta" className="hover:text-green-600 transition" onClick={(e) => handleScroll(e, "cta")}>
               Contact
             </a>
           </div>
@@ -56,7 +73,7 @@ const Hero = () => {
             </Link>
             <Link
               to="/app"
-              className="hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+              className="hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-md text-white"
               hidden={!user}
             >
               Dashboard
@@ -87,18 +104,18 @@ const Hero = () => {
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <a href="/" className="text-white">
-            Home
-          </a>
-          <a href="#features" className="text-white">
-            Features
-          </a>
-          <a href="#testimonials" className="text-white">
-            Testimonials
-          </a>
-          <a href="#contact" className="text-white">
-            Contact
-          </a>
+            <a href="/" className="text-white">
+              Home
+            </a>
+            <a href="#features" className="text-white" onClick={(e) => handleScroll(e, "features")}>
+              Features
+            </a>
+            <a href="#testimonials" className="text-white" onClick={(e) => handleScroll(e, "testimonials")} >
+              Testimonials
+            </a>
+            <a href="#contact" className="text-white" onClick={(e) => handleScroll(e, "contact")} >
+              Contact
+            </a>
           <button
             onClick={() => setMenuOpen(false)}
             className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex"
@@ -186,7 +203,7 @@ const Hero = () => {
           <div className="flex items-center gap-4 ">
             <Link
               to="/app"
-              className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors"
+              className="bg-green-500 hover:bg-green-600 text-white rounded-md px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors"
             >
               Get started
               <svg
@@ -206,25 +223,7 @@ const Hero = () => {
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </Link>
-            <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-video size-5"
-                aria-hidden="true"
-              >
-                <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path>
-                <rect x="2" y="6" width="14" height="12" rx="2"></rect>
-              </svg>
-              <span>Try demo</span>
-            </button>
+           
           </div>
 
           <p className="py-6 text-slate-600 mt-14">
@@ -246,15 +245,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-          * {
-              font-family: 'Poppins', sans-serif;
-          }
-      `}
-      </style>
     </>
   );
 };

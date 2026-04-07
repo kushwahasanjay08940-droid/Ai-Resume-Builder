@@ -15,7 +15,7 @@ const PersonalInfoForm = ({
   removeBackground,
   setRemoveBackground,
 }) => {
-  const handleChange = (field, value) => {
+  const handleChange = (field, value) => {  //handleChange("full_name", "Rahul") field , value
     onChange({ ...data, [field]: value });
   };
 
@@ -25,14 +25,14 @@ const PersonalInfoForm = ({
       label: "Full Name",
       icon: User,
       type: "text",
-      requried: true,
+      required: true,
     },
     {
       key: "email",
       label: "Email Address",
       icon: Mail,
       type: "email",
-      requried: true,
+      required: true,
     },
     { key: "phone", label: "Phone Number", icon: Phone, type: "tel" },
     { key: "location", label: "Location", icon: MapPin, type: "text" },
@@ -60,9 +60,9 @@ const PersonalInfoForm = ({
           {data.image ? (
             <img
               src={
-                typeof data.image === "string"
+                typeof data.image === "string"   //  data.image string hai ya file object?
                   ? data.image
-                  : URL.createObjectURL(data.image)
+                  : URL.createObjectURL(data.image)   //browser ek temporary URL banata hai,ina upload kiye preview
               }
               alt="user-image"
               className="w-16 h-16 rounded-full object-cover mt-5 ring ring-slate-300 hover:opacity-80"
@@ -108,14 +108,14 @@ const PersonalInfoForm = ({
             <label className="flex items-center gap-2 text-sm font-medium text-gray-600">
               <Icon className="size-4" />
               {field.label}
-              {field.requried && <span className="text-red-500">*</span>}
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <input
               className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-sm"
               placeholder={`Enter your ${field.label.toLowerCase()}`}
-              required={field.requried}
+              required={field.required}
               type={field.type}
-              value={data[field.key] || ""}
+              value={data[field.key] || ""}   //agar field.key = "name"
               onChange={(e) => handleChange(field.key, e.target.value)}
             />
           </div>

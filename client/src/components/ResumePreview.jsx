@@ -49,7 +49,8 @@ const ResumePreview = (props) => {
         {renderTemplate()}
       </div>
 
-      <style jsx>
+{/* //special CSS hai sirf print ke liye */}
+      <style jsx>  
         {`
           @page {
             size: letter;

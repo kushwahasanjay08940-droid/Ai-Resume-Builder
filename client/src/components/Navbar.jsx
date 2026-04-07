@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const logoutUser = () => {
     navigate("/");
-    dispatch(logout());
+    dispatch(logout());  //Tum Redux store ko bol rahe ho: logout
   };
 
   return (

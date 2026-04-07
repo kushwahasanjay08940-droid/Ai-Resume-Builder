@@ -11,7 +11,7 @@ const ProjectForm = ({ data, onChange }) => {
   };
 
   const removeProject = (index) => {
-    const updated = data.filter((_, i) => i !== index);
+    const updated = data.filter((_, i) => i !== index);   //filter ek new array banata hai
     onChange(updated);
   };
 
@@ -20,6 +20,13 @@ const ProjectForm = ({ data, onChange }) => {
     updated[index] = { ...updated[index], [field]: value };
     onChange(updated);
   };
+
+
+//  Param	  Meaning
+//  index   	kaunsa project update karna hai
+//  field	    kaunsi property change karni hai
+//  value   	nayi value
+
 
   return (
     <div>
@@ -67,6 +74,14 @@ const ProjectForm = ({ data, onChange }) => {
               <input
                 value={project.type || ""}
                 onChange={(e) => updateProject(index, "type", e.target.value)}
+
+// updateProject(
+//   index,        // kaunsa project
+//   "type",       // kaunsa field
+//   e.target.value // new value
+// )
+
+
                 type="text"
                 placeholder="Project Type"
                 className=" px-3 py-2 text-sm rounded-lg"

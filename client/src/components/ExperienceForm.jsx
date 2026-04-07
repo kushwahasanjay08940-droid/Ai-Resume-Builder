@@ -32,8 +32,10 @@ const ExperienceForm = ({ data, onChange }) => {
   };
 
   const generateDescription = async (index) => {
+    
     setGeneratingIndex(index);
     const experience = data[index];
+    console.log("server")
     const prompt = `enhance this job description ${experience.description} for the position of ${experience.position} at ${experience.company}.`;
       // console.log(prompt);
 
@@ -158,6 +160,9 @@ const ExperienceForm = ({ data, onChange }) => {
                   <button
                     className="flex items-center gap-1 px-2 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors disabled:opacity-50"
                     onClick={() => generateDescription(index)}
+
+                    
+
                     disabled={
                       generatingIndex === index ||
                       !experience.position ||
@@ -181,7 +186,7 @@ const ExperienceForm = ({ data, onChange }) => {
                   onChange={(e) =>
                     updateExperience(index, "description", e.target.value)
                   }
-                  className="w-full text-sm px-3 py-2 rounded-lg resize-none"
+                  className="w-full text-sm px-3 py-2 text-gray-700 border border-gray-300 rounded-lg resize-none"
                   placeholder="Describe your key responsibilities and achievements..."
                 />
               </div>
