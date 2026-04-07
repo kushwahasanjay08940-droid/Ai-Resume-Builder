@@ -5,11 +5,21 @@ Create, customize, and download professional resumes in minutes with AI assistan
 
 ---
 
-## 🚀 Live Demo
+## 🚀  Demo
 
-👉 *Add your deployed link here*
+overview
 
----
+<img width="941" height="472" alt="Screenshot 2026-04-07 235943" src="https://github.com/user-attachments/assets/10577082-cb76-43a7-b4ff-bff2a6af5785" />
+
+Features
+
+<img width="1893" height="961" alt="Screenshot 2026-04-08 000741" src="https://github.com/user-attachments/assets/8fbe00f8-2415-40bc-9abf-2434a85d54e0" />
+
+Dashboard
+
+<img width="1876" height="947" alt="Screenshot 2026-04-08 000957" src="https://github.com/user-attachments/assets/624e3152-437e-4611-a35e-c1c939378509" />
+
+And Many More
 
 ## 🧰 Tech Stack
 
