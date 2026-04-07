@@ -168,13 +168,6 @@ npm run dev
 
 ---
 
-## 🌍 Deployment
-
-### Frontend
-
-* Deploy on **Vercel**
-
-### Backend
 
 
 Make sure to update:
